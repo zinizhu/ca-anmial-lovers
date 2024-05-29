@@ -11,6 +11,7 @@ import { DogInfoCard, DogInfo } from "./DogInfoCard";
 
 const dogsInfo: DogInfo[] = [
   {
+    id: 1,
     name: "Chichi",
     image: "../images/Chichi.jpeg",
     age: 2,
@@ -21,6 +22,7 @@ const dogsInfo: DogInfo[] = [
     medicalCondition: "Needs Care",
   },
   {
+    id: 2,
     name: "Levi",
     image: "../images/Levi.jpeg",
     age: 3,
@@ -31,6 +33,7 @@ const dogsInfo: DogInfo[] = [
     medicalCondition: "Needs Care",
   },
   {
+    id: 3,
     name: "Claire",
     image: "../images/Claire.jpeg",
     age: 7,

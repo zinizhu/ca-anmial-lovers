@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 export type DogInfo = {
+  id: number;
   name: string;
   image: string;
   age: number;
@@ -63,7 +64,7 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
         <Button
           variant="outlined"
           size="large"
-          onClick={() => navigate("/dogDetail")}
+          onClick={() => navigate(`/dog-detail/${dogInfo.id}`)}
         >
           Learn More
         </Button>
