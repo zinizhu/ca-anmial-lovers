@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import HomePage from "./HomePage";
-import DogDetailsPage from "./DogDetailsPage";
+import { DogDetailsPage } from "./DogDetailsPage";
 
 const Info = () => {
   const navigate = useNavigate();
