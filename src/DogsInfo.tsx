@@ -4,7 +4,7 @@ export const dogsInfo: DogInfo[] = [
   {
     id: "1",
     name: "Chichi",
-    image: "../images/Chichi.jpeg",
+    images: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
     age: 2,
     deadline: "05/02",
     breed: "Huskey",
@@ -15,7 +15,7 @@ export const dogsInfo: DogInfo[] = [
   {
     id: "2",
     name: "Levi",
-    image: "../images/Levi.jpeg",
+    images: ["../images/Levi.jpeg"],
     age: 3,
     deadline: "05/02",
     breed: "GSD",
@@ -26,7 +26,7 @@ export const dogsInfo: DogInfo[] = [
   {
     id: "3",
     name: "Claire",
-    image: "../images/Claire.jpeg",
+    images: ["../images/Claire.jpeg"],
     age: 7,
     deadline: "05/03",
     breed: "GSD",

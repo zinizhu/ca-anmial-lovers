@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export type DogInfo = {
   id: string;
   name: string;
-  image: string;
+  images: string[];
   age: number;
   deadline: string;
   breed: string;
@@ -31,7 +31,7 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
       <CardMedia
         component="img"
         height="200"
-        image={dogInfo.image}
+        image={dogInfo.images[0]}
         alt={dogInfo.name}
       />
       <CardContent>
