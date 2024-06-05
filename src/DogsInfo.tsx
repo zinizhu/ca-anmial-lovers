@@ -12,6 +12,7 @@ export const dogsInfo: DogInfo[] = [
     weight: 60,
     medicalCondition: "Needs Care",
     description: "Chichi is adorable!",
+    videos: ["../videos/AnimalLovers.mp4"],
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ export const dogsInfo: DogInfo[] = [
     weight: 50,
     medicalCondition: "Needs Care",
     description: "Levi is smart.",
+    videos: ["../videos/AnimalLovers.mp4"],
   },
   {
     id: "3",
@@ -36,5 +38,6 @@ export const dogsInfo: DogInfo[] = [
     weight: 40,
     medicalCondition: "Good",
     description: "Claire is cute!",
+    videos: ["../videos/AnimalLovers.mp4"],
   },
 ];

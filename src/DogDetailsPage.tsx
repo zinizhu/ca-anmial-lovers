@@ -15,6 +15,7 @@ import { dogsInfo } from "./DogsInfo";
 import { Header } from "./Header";
 import { Card, CardContent, Container } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
+import { VideosSlider } from "./VideosSlider";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -77,6 +78,7 @@ export function DogDetailsPage() {
                       </Grid>
                     </Grid>
                   </Item>
+
                   <Item>
                     <CssBaseline />
                     <Box sx={{ bgcolor: "#fef1e1", height: "20vh" }}>
@@ -89,6 +91,9 @@ export function DogDetailsPage() {
                         </Typography>
                       </CardContent>
                     </Box>
+                  </Item>
+                  <Item>
+                    <VideosSlider videos={dogInfo.videos} />
                   </Item>
                 </Stack>
               </Container>

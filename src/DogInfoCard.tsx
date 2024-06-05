@@ -17,6 +17,7 @@ export type DogInfo = {
   weight: number;
   medicalCondition: string;
   description: string;
+  videos: string[];
 };
 
 type DogInfoProps = {
