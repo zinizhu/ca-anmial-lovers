@@ -11,6 +11,7 @@ export const dogsInfo: DogInfo[] = [
     gender: "Male",
     weight: 60,
     medicalCondition: "Needs Care",
+    description: "Chichi is adorable!",
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ export const dogsInfo: DogInfo[] = [
     gender: "Male",
     weight: 50,
     medicalCondition: "Needs Care",
+    description: "Levi is smart.",
   },
   {
     id: "3",
@@ -33,5 +35,6 @@ export const dogsInfo: DogInfo[] = [
     gender: "Female",
     weight: 40,
     medicalCondition: "Good",
+    description: "Claire is cute!",
   },
 ];

@@ -16,6 +16,7 @@ export type DogInfo = {
   gender: string;
   weight: number;
   medicalCondition: string;
+  description: string;
 };
 
 type DogInfoProps = {
