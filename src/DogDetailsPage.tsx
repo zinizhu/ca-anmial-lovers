@@ -20,9 +20,6 @@ import { VideosSlider } from "./VideosSlider";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
-  padding: theme.spacing(1),
-  paddingLeft: theme.spacing(2),
-  paddingRight: theme.spacing(2),
   // textAlign: "center",
   // color: theme.palette.text.secondary,
 }));
@@ -67,6 +64,7 @@ export function DogDetailsPage() {
                       spacing={4}
                       justifyContent="center"
                       alignItems="center"
+                      style={{ background: "#fef2e0" }}
                     >
                       <Grid item xs={12} sm={6}>
                         <Card sx={{ minHeight: 250 }}>
@@ -127,7 +125,7 @@ export function DogDetailsPage() {
 
                   <Item elevation={0}>
                     <CssBaseline />
-                    <Box sx={{ bgcolor: "#fef1e1", height: "20vh" }}>
+                    <Box sx={{ bgcolor: "", height: "20vh" }}>
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                           Description
