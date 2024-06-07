@@ -6,7 +6,7 @@ import PetsIcon from "@mui/icons-material/Pets";
 
 export function Header() {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "#e66708" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -14,7 +14,7 @@ export function Header() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="#Header"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },

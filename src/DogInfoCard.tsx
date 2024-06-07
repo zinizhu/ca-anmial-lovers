@@ -28,7 +28,7 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} variant="outlined">
       <CardContent># People Showed Interest: 3</CardContent>
       <CardMedia
         component="img"
@@ -65,6 +65,7 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
       <CardActions>
         <Button
           variant="contained"
+          color="info"
           size="large"
           onClick={() => navigate(`/dog-detail/${dogInfo.id}`)}
         >
