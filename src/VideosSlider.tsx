@@ -69,15 +69,6 @@ export function VideosSlider({ videos }: Videos) {
         swipeable
       >
         {videos.map((video) => (
-          // <div
-          //   style={{
-          //     display: "flex",
-          //     justifyContent: "center",
-          //     alignItems: "center",
-          //     height: "500px", // Height of the image container
-          //     backgroundColor: "#f0f0f0", // Background color for padding effect
-          //   }}
-          // >
           <Box
             component="ul"
             sx={{ display: "flex", gap: 2, flexWrap: "wrap", p: 0, m: 0 }}
@@ -93,12 +84,11 @@ export function VideosSlider({ videos }: Videos) {
                   level="body-lg"
                   fontWeight="lg"
                   textColor="#fff"
-                  mt={{ xs: 12, sm: 18 }}
+                  mt={{ xs: 12, sm: 50 }}
                 ></Typography>
               </CardContent>
             </Card>
           </Box>
-          // </div>
         ))}
       </Carousel>
     </div>

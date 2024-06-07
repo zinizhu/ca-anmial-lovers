@@ -2,7 +2,7 @@ import { DogInfo } from "./DogInfoCard";
 
 export const dogsInfo: DogInfo[] = [
   {
-    id: "1",
+    id: 1,
     name: "Chichi",
     images: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
     age: 2,
@@ -15,7 +15,7 @@ export const dogsInfo: DogInfo[] = [
     videos: ["../videos/AnimalLovers.mp4"],
   },
   {
-    id: "2",
+    id: 2,
     name: "Levi",
     images: ["../images/Levi.jpeg"],
     age: 3,
@@ -28,7 +28,7 @@ export const dogsInfo: DogInfo[] = [
     videos: ["../videos/AnimalLovers.mp4"],
   },
   {
-    id: "3",
+    id: 3,
     name: "Claire",
     images: ["../images/Claire.jpeg"],
     age: 7,
