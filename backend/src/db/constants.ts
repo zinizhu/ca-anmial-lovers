@@ -1,35 +1,35 @@
-import { Dog } from './types'
+import { Dog } from "./types";
 
 export const DB_CONFIG = {
-    user: "caal",
-    password: "caal",
-    host: "127.0.0.1",
-    database: "caal",
-    port: 5432,
-    max: 3
-}
+  user: "caal",
+  password: "caal",
+  host: "127.0.0.1",
+  database: "caal",
+  port: 5432,
+  max: 3,
+};
 
 export const CREATE_ENUM_GENDER = `
 CREATE TYPE GENDER AS ENUM (
     'male',
     'female'
 );
-`
+`;
 
 export const CREATE_ENUM_MEDICAL_CONDITION = `
 CREATE TYPE MEDICAL_CONDITION AS ENUM (
     'none',
     'exist'
 );
-`
+`;
 
 export const DELETE_ENUM_GENDER = `
 DROP TYPE IF EXISTS GENDER
-`
+`;
 
 export const DELETE_ENUM_MEDICAL_CONDITION = `
 DROP TYPE IF EXISTS MEDICAL_CONDITION
-`
+`;
 
 export const CREATE_TABLE_DOGS = `
 CREATE TABLE IF NOT EXISTS dogs (
@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS dogs (
     image_urls TEXT[],
     video_urls TEXT[]
 );
-`
+`;
 
 export const DROP_TABLE_DOGS = `
     DROP TABLE IF EXISTS dogs
-`
+`;
 
 export const INSERT_DOG = `
 INSERT INTO dogs(
@@ -81,48 +81,52 @@ INSERT INTO dogs(
     $11,
     $12
 );
-`
+`;
+export const GET_DOG_BY_ID = `
+SELECT * FROM dogs WHERE id=$1;
+`;
+
 export const DOGS_INFO: Dog[] = [
-    {
-        name: 'Chichi',
-        year: 2,
-        month: 0,
-        weight: 60,
-        deadline: '2024-05-02',
-        breed: 'German Shepherd Dog & Husky mix',
-        gender: 'male',
-        medicalCondition: 'exist',
-        medicalConditionNote: 'Chichi needs medical care.',
-        description: 'Chichi is adorable!',
-        video_urls: ["../videos/AnimalLovers.mp4"],
-        image_urls: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
-    },
-    {
-        name: 'Levi',
-        year: 3,
-        month: 0,
-        weight: 50,
-        deadline: '2024-05-02',
-        breed: 'German Shepherd Dog',
-        gender: 'male',
-        medicalCondition: 'exist',
-        medicalConditionNote: 'Levi needs medical care.',
-        description: 'Levi is smart',
-        video_urls: ["../videos/AnimalLovers.mp4"],
-        image_urls: ["../images/Levi.jpeg"],
-    },
-    {
-        name: 'Claire',
-        year: 7,
-        month: 0,
-        weight: 40,
-        deadline: '2024-05-03',
-        breed: 'German Shepherd Dog',
-        gender: 'female',
-        medicalCondition: 'none',
-        medicalConditionNote: '',
-        description: 'Claire is cute',
-        video_urls: ["../videos/AnimalLovers.mp4"],
-        image_urls: ["../images/Claire.jpeg"],
-    },
-]
+  {
+    name: "Chichi",
+    year: 2,
+    month: 0,
+    weight: 60,
+    deadline: "2024-05-02",
+    breed: "German Shepherd Dog & Husky mix",
+    gender: "male",
+    medicalCondition: "exist",
+    medicalConditionNote: "Chichi needs medical care.",
+    description: "Chichi is adorable!",
+    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
+  },
+  {
+    name: "Levi",
+    year: 3,
+    month: 0,
+    weight: 50,
+    deadline: "2024-05-02",
+    breed: "German Shepherd Dog",
+    gender: "male",
+    medicalCondition: "exist",
+    medicalConditionNote: "Levi needs medical care.",
+    description: "Levi is smart",
+    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/Levi.jpeg"],
+  },
+  {
+    name: "Claire",
+    year: 7,
+    month: 0,
+    weight: 40,
+    deadline: "2024-05-03",
+    breed: "German Shepherd Dog",
+    gender: "female",
+    medicalCondition: "none",
+    medicalConditionNote: "",
+    description: "Claire is cute",
+    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/Claire.jpeg"],
+  },
+];

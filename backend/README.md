@@ -53,3 +53,11 @@ Create the `dogs` table on in your local Postgres DB and populate the table with
 ```sh
 $ DELETE_EXISTING_TABLE_DOGS=true tsx backend/src/db/populateLocalDB.ts
 ```
+
+## Start backend server
+
+To start the backend server, make sure you are in the backend directory. Run
+
+```sh
+$ tsx src/index.ts
+```
