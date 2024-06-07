@@ -40,7 +40,7 @@ $ psql -U caal
 
 And you are now conencted to the DB.
 
-### Connect to the postgres DB programmatically
+### Populate local DB
 
 Install `tsx`:
 
@@ -48,8 +48,8 @@ Install `tsx`:
 $ sudo npm install tsx -g
 ```
 
-And you can interact with the DB by using the `pg` client library. You can find the examples in `/backend/src/db/index.ts`.
+Create the `dogs` table on in your local Postgres DB and populate the table with mock data:
 
 ```sh
-$ tsx backend/src/db/index.ts
+$ DELETE_EXISTING_TABLE_DOGS=true tsx backend/src/db/populateLocalDB.ts
 ```
