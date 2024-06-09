@@ -18,7 +18,7 @@ function HomePage() {
       <div>
         <Grid container rowSpacing={4} padding={5}>
           {dogsInfo.map((dogInfo, dogIdx) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={dogIdx}>
+            <Grid item xs={12} sm={6} md={4} key={dogIdx}>
               <DogInfoCard dogInfo={dogInfo} />
             </Grid>
           ))}

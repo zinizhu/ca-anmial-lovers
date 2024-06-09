@@ -16,6 +16,8 @@ import { Header } from "./Header";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
+import { volunteersInfo } from "./VolunteersInfo";
+import { dogVolunteerMapping } from "./DogVolunteersMapping";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,10 +32,13 @@ export function DogDetailsPage() {
   const { id } = useParams();
   const dogInfo = dogsInfo.find((d) => d.id.toString() === id);
 
+  const volunteerId = dogInfo ? dogVolunteerMapping[dogInfo.id] : undefined;
+  const volunteerInfo = volunteerId
+    ? volunteersInfo.find((volunteer) => volunteer.id === volunteerId)
+    : undefined;
+
   const ResourceInfo = {
-    numberOfPeopleInterested: 10,
-    assignee: "John Doe",
-    phone_number: 123456,
+    numberOfPeopleInterested: 3,
   };
 
   return (
@@ -101,12 +106,20 @@ export function DogDetailsPage() {
                               {ResourceInfo.numberOfPeopleInterested} people
                               interested!
                             </Typography>
-                            <Typography variant="body1">
-                              Contact : {ResourceInfo.assignee}
-                            </Typography>
-                            <Typography variant="body1">
-                              Phone number : {ResourceInfo.phone_number}
-                            </Typography>
+                            {volunteerInfo ? (
+                              <div>
+                                <Typography variant="body1">
+                                  Contact : {volunteerInfo.name}
+                                </Typography>
+                                <Typography variant="body1">
+                                  Phone number : {volunteerInfo.phone_number}
+                                </Typography>
+                              </div>
+                            ) : (
+                              <Typography variant="body1">
+                                No volunteer assigned
+                              </Typography>
+                            )}
                           </CardContent>
                           <CardActions>
                             <Button
