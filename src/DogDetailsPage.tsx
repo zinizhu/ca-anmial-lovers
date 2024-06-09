@@ -95,14 +95,13 @@ export function DogDetailsPage() {
                       <Grid item xs={12} sm={6}>
                         <Card sx={{ minHeight: 250 }}>
                           <CardContent>
-                            <Typography
-                              variant="h4"
-                              sx={{ mb: 1.5 }}
-                              color="red"
-                            >
+                            <Typography variant="h5" color="red">
                               Deadline: {dogInfo.deadline}
                             </Typography>
-                            <Typography variant="h5" sx={{ mb: 1.5 }}>
+                            <Typography variant="body1" sx={{ mb: 1.5 }}>
+                              Dog Status: {dogInfo.status}
+                            </Typography>
+                            <Typography variant="body1" sx={{ mb: 1.5 }}>
                               {ResourceInfo.numberOfPeopleInterested} people
                               interested!
                             </Typography>

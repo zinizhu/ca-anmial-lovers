@@ -13,6 +13,7 @@ export const dogsInfo: DogInfo[] = [
     medicalCondition: "Needs Care",
     description: "Chichi is adorable!",
     videos: ["../videos/AnimalLovers.mp4"],
+    status: "Contacting resource",
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const dogsInfo: DogInfo[] = [
     medicalCondition: "Needs Care",
     description: "Levi is smart.",
     videos: ["../videos/AnimalLovers.mp4"],
+    status: "Someone has commited to foster",
   },
   {
     id: 3,
@@ -39,5 +41,6 @@ export const dogsInfo: DogInfo[] = [
     medicalCondition: "Good",
     description: "Claire is cute!",
     videos: ["../videos/AnimalLovers.mp4"],
+    status: "Someone has commited to adopt",
   },
 ];

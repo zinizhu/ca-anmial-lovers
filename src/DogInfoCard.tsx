@@ -18,6 +18,7 @@ export type DogInfo = {
   medicalCondition: string;
   description: string;
   videos: string[];
+  status: string;
 };
 
 type DogInfoProps = {
