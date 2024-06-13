@@ -5,17 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-
-export type DogInfo = {
-  name: string;
-  image: string;
-  age: number;
-  deadline: string;
-  breed: string;
-  gender: string;
-  weight: number;
-  medicalCondition: string;
-};
+import { DogInfo, DOGS_STATUS } from "./Constants";
 
 type DogInfoProps = {
   dogInfo: DogInfo;
@@ -24,13 +14,23 @@ type DogInfoProps = {
 export function DogInfoCard({ dogInfo }: DogInfoProps) {
   const navigate = useNavigate();
 
+  const dogStatus = DOGS_STATUS[dogInfo.id];
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardContent># People Showed Interest: 3</CardContent>
+    <Card sx={{ maxWidth: 345 }} variant="outlined">
+      {dogStatus ? (
+        <div>
+          <CardContent>
+            # People Showed Interest: {dogStatus.number_of_interested}
+          </CardContent>
+        </div>
+      ) : (
+        <CardContent># People Showed Interest: UNKOWN </CardContent>
+      )}
       <CardMedia
         component="img"
         height="200"
-        image={dogInfo.image}
+        image={dogInfo.images[0]}
         alt={dogInfo.name}
       />
       <CardContent>
@@ -61,13 +61,19 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
 
       <CardActions>
         <Button
-          variant="outlined"
+          variant="contained"
+          color="info"
           size="large"
-          onClick={() => navigate("/dogDetail")}
+          onClick={() => navigate(`/dog-detail/${dogInfo.id}`)}
         >
           Learn More
         </Button>
-        <Button variant="contained" color="error" size="large">
+        <Button
+          variant="contained"
+          color="error"
+          size="large"
+          onClick={() => navigate(`/sign-up-form`)}
+        >
           HELP the Dog!
         </Button>
       </CardActions>
