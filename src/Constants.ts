@@ -1,6 +1,6 @@
 import { DogInfo } from "./DogInfoCard";
 
-export const dogsInfo: DogInfo[] = [
+export const DOGS_INFO: DogInfo[] = [
   {
     id: 1,
     name: "Chichi",
@@ -44,3 +44,27 @@ export const dogsInfo: DogInfo[] = [
     status: "Someone has commited to adopt",
   },
 ];
+
+export type VolunteersInfo = {
+  id: number;
+  name: string;
+  phone_number: string;
+};
+  
+export const VOLUNTEERS_INFO: VolunteersInfo[] = [
+  {
+      id: 1,
+      name: "A",
+      phone_number: "12345",
+  },
+  {
+      id: 2,
+      name: "B",
+      phone_number: "98765",
+  },
+];
+
+export const DOG_VOLUNTEER_MAPPING: Record<number, number> = {
+  1: 1,
+  2: 2,
+};

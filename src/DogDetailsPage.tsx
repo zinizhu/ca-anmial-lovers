@@ -11,13 +11,13 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
-import { dogsInfo } from "./DogsInfo";
+import { DOGS_INFO } from "./Constants";
 import { Header } from "./Header";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
-import { volunteersInfo } from "./VolunteersInfo";
-import { dogVolunteerMapping } from "./DogVolunteersMapping";
+import { VOLUNTEERS_INFO } from "./Constants";
+import { DOG_VOLUNTEER_MAPPING } from "./Constants";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,11 +30,11 @@ export function DogDetailsPage() {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const dogInfo = dogsInfo.find((d) => d.id.toString() === id);
+  const dogInfo = DOGS_INFO.find((d) => d.id.toString() === id);
 
-  const volunteerId = dogInfo ? dogVolunteerMapping[dogInfo.id] : undefined;
+  const volunteerId = dogInfo ? DOG_VOLUNTEER_MAPPING[dogInfo.id] : undefined;
   const volunteerInfo = volunteerId
-    ? volunteersInfo.find((volunteer) => volunteer.id === volunteerId)
+    ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
     : undefined;
 
   const ResourceInfo = {
