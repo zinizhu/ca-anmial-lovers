@@ -16,8 +16,11 @@ import { Header } from "./Header";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
-import { VOLUNTEERS_INFO } from "./Constants";
-import { DOG_VOLUNTEER_MAPPING } from "./Constants";
+import {
+  VOLUNTEERS_INFO,
+  DOG_VOLUNTEER_MAPPING,
+  DOGS_STATUS,
+} from "./Constants";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,6 +39,8 @@ export function DogDetailsPage() {
   const volunteerInfo = volunteerId
     ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
     : undefined;
+
+  const dogStatus = dogInfo ? DOGS_STATUS[dogInfo.id] : undefined;
 
   const ResourceInfo = {
     numberOfPeopleInterested: 3,
@@ -95,16 +100,33 @@ export function DogDetailsPage() {
                       <Grid item xs={12} sm={6}>
                         <Card sx={{ minHeight: 250 }}>
                           <CardContent>
-                            <Typography variant="h5" color="red">
+                            <Typography
+                              variant="h5"
+                              color="red"
+                              sx={{ mb: 1.5 }}
+                            >
                               Deadline: {dogInfo.deadline}
                             </Typography>
-                            <Typography variant="body1" sx={{ mb: 1.5 }}>
-                              Dog Status: {dogInfo.status}
-                            </Typography>
-                            <Typography variant="body1" sx={{ mb: 1.5 }}>
-                              {ResourceInfo.numberOfPeopleInterested} people
-                              interested!
-                            </Typography>
+                            {dogStatus ? (
+                              <div>
+                                <Typography variant="body1">
+                                  Rescue Status: {dogStatus.rescue_status}
+                                </Typography>
+                                <Typography variant="body1">
+                                  Adopter/Foster Status:{" "}
+                                  {dogStatus.adopter_foster_status}
+                                </Typography>
+                                <Typography variant="body1" sx={{ mb: 1.5 }}>
+                                  {dogStatus.number_of_interested} people
+                                  interested!
+                                </Typography>
+                              </div>
+                            ) : (
+                              <Typography variant="body1">
+                                Dog Status Not Available
+                              </Typography>
+                            )}
+
                             {volunteerInfo ? (
                               <div>
                                 <Typography variant="body1">

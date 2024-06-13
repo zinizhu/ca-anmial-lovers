@@ -5,21 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-
-export type DogInfo = {
-  id: number;
-  name: string;
-  images: string[];
-  age: number;
-  deadline: string;
-  breed: string;
-  gender: string;
-  weight: number;
-  medicalCondition: string;
-  description: string;
-  videos: string[];
-  status: string;
-};
+import { DogInfo, DOGS_STATUS } from "./Constants";
 
 type DogInfoProps = {
   dogInfo: DogInfo;
@@ -28,9 +14,19 @@ type DogInfoProps = {
 export function DogInfoCard({ dogInfo }: DogInfoProps) {
   const navigate = useNavigate();
 
+  const dogStatus = DOGS_STATUS[dogInfo.id];
+
   return (
     <Card sx={{ maxWidth: 345 }} variant="outlined">
-      <CardContent># People Showed Interest: 3</CardContent>
+      {dogStatus ? (
+        <div>
+          <CardContent>
+            # People Showed Interest: {dogStatus.number_of_interested}
+          </CardContent>
+        </div>
+      ) : (
+        <CardContent># People Showed Interest: UNKOWN </CardContent>
+      )}
       <CardMedia
         component="img"
         height="200"

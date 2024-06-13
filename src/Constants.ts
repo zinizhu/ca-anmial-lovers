@@ -1,4 +1,16 @@
-import { DogInfo } from "./DogInfoCard";
+export type DogInfo = {
+  id: number;
+  name: string;
+  images: string[];
+  age: number;
+  deadline: string;
+  breed: string;
+  gender: string;
+  weight: number;
+  medicalCondition: string;
+  description: string;
+  videos: string[];
+};
 
 export const DOGS_INFO: DogInfo[] = [
   {
@@ -12,8 +24,7 @@ export const DOGS_INFO: DogInfo[] = [
     weight: 60,
     medicalCondition: "Needs Care",
     description: "Chichi is adorable!",
-    videos: ["../videos/AnimalLovers.mp4"],
-    status: "Contacting resource",
+    videos: ["../videos/AnimalLovers.mp4"]
   },
   {
     id: 2,
@@ -26,8 +37,7 @@ export const DOGS_INFO: DogInfo[] = [
     weight: 50,
     medicalCondition: "Needs Care",
     description: "Levi is smart.",
-    videos: ["../videos/AnimalLovers.mp4"],
-    status: "Someone has commited to foster",
+    videos: ["../videos/AnimalLovers.mp4"]
   },
   {
     id: 3,
@@ -40,8 +50,7 @@ export const DOGS_INFO: DogInfo[] = [
     weight: 40,
     medicalCondition: "Good",
     description: "Claire is cute!",
-    videos: ["../videos/AnimalLovers.mp4"],
-    status: "Someone has commited to adopt",
+    videos: ["../videos/AnimalLovers.mp4"]
   },
 ];
 
@@ -67,4 +76,31 @@ export const VOLUNTEERS_INFO: VolunteersInfo[] = [
 export const DOG_VOLUNTEER_MAPPING: Record<number, number> = {
   1: 1,
   2: 2,
+};
+
+export type DOGSTATUS = {
+  rescue_status: string;
+  adopter_foster_status: string;
+  number_of_interested: number;
+}
+
+export const DOGS_STATUS: Record<number, DOGSTATUS> = {
+  1: 
+  { 
+    rescue_status: "In Contact",
+    adopter_foster_status: "In Need",
+    number_of_interested: 0
+  },
+  2:
+  {
+    rescue_status: "Tagged",
+    adopter_foster_status: "In Contact",
+    number_of_interested: 1
+  },
+  3:
+  {
+    rescue_status: "Tagged",
+    adopter_foster_status: "Commited",
+    number_of_interested: 2
+  }
 };
