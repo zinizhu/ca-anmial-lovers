@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"; // Grid version 1
@@ -136,7 +135,9 @@ export function SignUpForm() {
                     <TextField label="Zip Code" fullWidth margin="normal" />
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
-                    <Typography variant="body1">Foster or Adopt?</Typography>
+                    <Typography variant="body1">
+                      Do you want to adopt or foster?
+                    </Typography>
                   </Grid>
                   <Grid item xs={12} sm={9}>
                     <FormControl
@@ -155,7 +156,9 @@ export function SignUpForm() {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
-                    <Typography variant="body1">Home Type?</Typography>
+                    <Typography variant="body1">
+                      What is the type of your home?
+                    </Typography>
                   </Grid>
                   <Grid item xs={12} sm={3}>
                     <FormControl
@@ -178,15 +181,17 @@ export function SignUpForm() {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={2} container alignItems="center">
-                    <Typography variant="body1">Has yard?</Typography>
+                  <Grid item xs={12} sm={3} container alignItems="center">
+                    <Typography variant="body1">
+                      Is there yard in your home?
+                    </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={3}>
                     <FormControl
                       variant="standard"
                       sx={{ m: 1, minWidth: 240 }}
                     >
-                      <InputLabel>Has Yard</InputLabel>
+                      <InputLabel>Yard</InputLabel>
                       <Select
                         value={yard}
                         onChange={handleYardChange}
@@ -199,7 +204,7 @@ export function SignUpForm() {
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
                     <Typography variant="body1">
-                      Number of Cats at Home?
+                      How many cats live in your home?
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={9}>
@@ -222,7 +227,7 @@ export function SignUpForm() {
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
                     <Typography variant="body1">
-                      Number of Dogs at Home?
+                      How many dogs live in your home?
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={9}>
@@ -245,7 +250,7 @@ export function SignUpForm() {
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
                     <Typography variant="body1">
-                      Have experience in handling dogs?
+                      Do you have experience in handling dogs?
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={9}>
@@ -265,14 +270,12 @@ export function SignUpForm() {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={3} container alignItems="center">
-                    <Typography variant="body1">
-                      Other Preferences/concers/comments?
-                    </Typography>
+                    <Typography variant="body1">Notes</Typography>
                   </Grid>
                   <Grid item xs={12} sm={9}>
                     <TextField
                       id="outlined-multiline-static"
-                      label="Comments"
+                      label="Notes"
                       multiline
                       fullWidth
                       rows={4}
@@ -284,6 +287,7 @@ export function SignUpForm() {
                   color="primary"
                   type="submit"
                   style={{ marginTop: "16px" }}
+                  onClick={() => navigate(`/thanks-for-sign-up`)}
                 >
                   Submit
                 </Button>
@@ -295,58 +299,5 @@ export function SignUpForm() {
         )}
       </Container>
     </>
-
-    // <Box
-    //   component="form"
-    //   sx={{
-    //     "& .MuiTextField-root": { m: 1, width: "25ch" },
-    //   }}
-    //   noValidate
-    //   autoComplete="off"
-    // >
-    //   <div>
-    //     <TextField
-    //       required
-    //       id="outlined-required"
-    //       label="Required"
-    //       defaultValue="Hello World"
-    //     />
-    //     <TextField
-    //       disabled
-    //       id="outlined-disabled"
-    //       label="Disabled"
-    //       defaultValue="Hello World"
-    //     />
-    //     <TextField
-    //       id="outlined-password-input"
-    //       label="Password"
-    //       type="password"
-    //       autoComplete="current-password"
-    //     />
-    //     <TextField
-    //       id="outlined-read-only-input"
-    //       label="Read Only"
-    //       defaultValue="Hello World"
-    //       InputProps={{
-    //         readOnly: true,
-    //       }}
-    //     />
-    //     <TextField
-    //       id="outlined-number"
-    //       label="Number"
-    //       type="number"
-    //       InputLabelProps={{
-    //         shrink: true,
-    //       }}
-    //     />
-    //     <TextField id="outlined-search" label="Search field" type="search" />
-    //     <TextField
-    //       id="outlined-helperText"
-    //       label="Helper text"
-    //       defaultValue="Default Value"
-    //       helperText="Some important text"
-    //     />
-    //   </div>
-    // </Box>
   );
 }

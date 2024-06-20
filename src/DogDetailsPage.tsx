@@ -10,10 +10,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { Card, CardContent, Container, CardActions } from "@mui/material";
 
 import { DOGS_INFO } from "./Constants";
 import { Header } from "./Header";
-import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
 import {
