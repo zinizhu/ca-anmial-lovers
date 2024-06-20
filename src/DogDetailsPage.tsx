@@ -10,10 +10,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { Card, CardContent, Container, CardActions } from "@mui/material";
 
 import { DOGS_INFO } from "./Constants";
 import { Header } from "./Header";
-import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
 import {
@@ -77,7 +77,7 @@ export function DogDetailsPage() {
                       style={{ background: "#fef2e0" }}
                     >
                       <Grid item xs={12} sm={6}>
-                        <Card sx={{ minHeight: 250 }}>
+                        <Card sx={{ minHeight: 300 }}>
                           <CardContent>
                             <Typography variant="h5" sx={{ mb: 1.5 }}>
                               Name: {dogInfo.name}
@@ -98,7 +98,7 @@ export function DogDetailsPage() {
                       </Grid>
 
                       <Grid item xs={12} sm={6}>
-                        <Card sx={{ minHeight: 250 }}>
+                        <Card sx={{ minHeight: 300 }}>
                           <CardContent>
                             <Typography
                               variant="h5"
@@ -112,7 +112,7 @@ export function DogDetailsPage() {
                                 <Typography variant="body1">
                                   Rescue Status: {dogStatus.rescue_status}
                                 </Typography>
-                                <Typography variant="body1">
+                                <Typography variant="body1" sx={{ mb: 1.5 }}>
                                   Adopter/Foster Status:{" "}
                                   {dogStatus.adopter_foster_status}
                                 </Typography>
@@ -147,7 +147,9 @@ export function DogDetailsPage() {
                               variant="contained"
                               color="error"
                               size="large"
-                              onClick={() => navigate(`/sign-up-form`)}
+                              onClick={() =>
+                                navigate(`/sign-up-form/${dogInfo.id}`)
+                              }
                             >
                               Help the Dog!
                             </Button>

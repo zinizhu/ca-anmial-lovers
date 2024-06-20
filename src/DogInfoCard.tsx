@@ -72,7 +72,7 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
           variant="contained"
           color="error"
           size="large"
-          onClick={() => navigate(`/sign-up-form`)}
+          onClick={() => navigate(`/sign-up-form/${dogInfo.id}`)}
         >
           HELP the Dog!
         </Button>
