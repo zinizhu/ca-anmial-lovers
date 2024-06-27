@@ -62,8 +62,9 @@ export function ImagesSlider({ images }: Images) {
         slidesToSlide={1}
         swipeable
       >
-        {images.map((image) => (
+        {images.map((image, idx) => (
           <div
+            key={idx}
             style={{
               display: "flex",
               justifyContent: "center",

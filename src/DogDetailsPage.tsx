@@ -21,6 +21,28 @@ import {
   DOG_VOLUNTEER_MAPPING,
   DOGS_STATUS,
 } from "./Constants";
+import { useState, useEffect } from "react";
+
+type Gender = "male" | "female";
+
+type MedicalCondition = "none" | "exist";
+
+type Dog = {
+  id: number;
+  name: string;
+  year: number;
+  month: number;
+  weight: number;
+  deadline: string;
+  breed: string;
+  gender: Gender;
+  medical_condition: MedicalCondition;
+  medical_condition_note: string;
+  description: string;
+  image_urls: string[];
+  video_urls: string[];
+};
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -29,22 +51,48 @@ const Item = styled(Paper)(({ theme }) => ({
   // color: theme.palette.text.secondary,
 }));
 
-export function DogDetailsPage() {
+export const DogDetailsPage = () => {
+  const [dog, setDog] = useState<Dog>({
+    id: 0,
+    name: 'unknown',
+    year: 0,
+    month: 0,
+    weight: 0,
+    deadline: 'unknown',
+    breed: 'unknown',
+    gender: 'female',
+    medical_condition: 'exist',
+    medical_condition_note: '',
+    description: '',
+    image_urls: [],
+    video_urls: []
+  });
+
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const dogInfo = DOGS_INFO.find((d) => d.id.toString() === id);
 
-  const volunteerId = dogInfo ? DOG_VOLUNTEER_MAPPING[dogInfo.id] : undefined;
+  // Fetch dog info from backend
+  const fetchDog = async () => {
+    const response = await fetch(`http://localhost:8080/api/dog/info/${id}`);
+    const dogInfoFromBackend = await response.json();
+    setDog(dogInfoFromBackend.dog)
+  }
+  
+  const volunteerId = dog ? DOG_VOLUNTEER_MAPPING[dog.id] : undefined;
   const volunteerInfo = volunteerId
     ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
     : undefined;
 
-  const dogStatus = dogInfo ? DOGS_STATUS[dogInfo.id] : undefined;
+  const dogStatus = dog ? DOGS_STATUS[dog.id] : undefined;
 
   const ResourceInfo = {
     numberOfPeopleInterested: 3,
   };
+
+  useEffect(() => {
+    fetchDog()
+  }, []);
 
   return (
     <>
@@ -63,9 +111,9 @@ export function DogDetailsPage() {
 
       <div>
         <Container>
-          {dogInfo ? (
+          {dog ? (
             <Container maxWidth="md">
-              <ImagesSlider images={dogInfo.images} />
+              <ImagesSlider images={dog.image_urls} />
               <Container maxWidth="md">
                 <Stack spacing={2}>
                   <Item elevation={0}>
@@ -80,18 +128,18 @@ export function DogDetailsPage() {
                         <Card sx={{ minHeight: 250 }}>
                           <CardContent>
                             <Typography variant="h5" sx={{ mb: 1.5 }}>
-                              Name: {dogInfo.name}
+                              Name: {dog.name}
                             </Typography>
                             <Typography variant="body1">
-                              Breed: {dogInfo.breed}
+                              Breed: {dog.breed}
                               <br />
-                              Age: {dogInfo.age} years old
+                              Age: {dog.year} year {dog.month} month
                               <br />
-                              Weight: {dogInfo.weight} LB
+                              Weight: {dog.weight} LB
                               <br />
-                              Gender: {dogInfo.gender}
+                              Gender: {dog.gender}
                               <br />
-                              Medical Condition: {dogInfo.medicalCondition}
+                              Medical Condition: {dog.medical_condition_note}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -105,7 +153,7 @@ export function DogDetailsPage() {
                               color="red"
                               sx={{ mb: 1.5 }}
                             >
-                              Deadline: {dogInfo.deadline}
+                              Deadline: {dog.deadline}
                             </Typography>
                             {dogStatus ? (
                               <div>
@@ -165,13 +213,13 @@ export function DogDetailsPage() {
                           Description
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          {dogInfo.description}
+                          {dog.description}
                         </Typography>
                       </CardContent>
                     </Box>
                   </Item>
                   <Item elevation={0}>
-                    <VideosSlider videos={dogInfo.videos} />
+                    <VideosSlider videos={dog.video_urls} />
                   </Item>
                 </Stack>
               </Container>

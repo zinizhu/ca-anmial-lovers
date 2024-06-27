@@ -10,8 +10,8 @@ export type Dog = {
   deadline: string;
   breed: string;
   gender: Gender;
-  medicalCondition: MedicalCondition;
-  medicalConditionNote: string;
+  medical_condition: MedicalCondition;
+  medical_condition_note: string;
   description: string;
   image_urls: string[];
   video_urls: string[];
