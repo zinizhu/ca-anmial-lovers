@@ -23,6 +23,7 @@ import {
 } from "./Constants";
 import { useState, useEffect } from "react";
 
+// TODO: Types should be managed centrally.
 type Gender = "male" | "female";
 
 type MedicalCondition = "none" | "exist";
