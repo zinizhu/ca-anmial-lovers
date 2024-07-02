@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { Dog, DOG_DEFAULT } from "./Constants";
+import { fetchDog } from "./UtilityFunctions";
 import { Header } from "./Header";
 
 export function SignUpForm() {
@@ -26,13 +27,6 @@ export function SignUpForm() {
   const { id } = useParams();
 
   const [dog, setDog] = useState<Dog>(DOG_DEFAULT);
-
-  // Fetch dog info from backend
-  const fetchDog = async () => {
-    const response = await fetch(`http://localhost:8080/api/dog/info/${id}`);
-    const dogInfoFromBackend = await response.json();
-    setDog(dogInfoFromBackend.dog);
-  };
 
   const dogInfo = dog ? dog : undefined;
 
@@ -67,7 +61,9 @@ export function SignUpForm() {
   };
 
   useEffect(() => {
-    fetchDog();
+    if (id) {
+      fetchDog(id, setDog);
+    }
   }, []);
 
   return (
@@ -86,7 +82,7 @@ export function SignUpForm() {
       </div>
 
       <Container>
-        {dogInfo ? (
+        {dogInfo && id ? (
           <Card>
             <CardContent>
               <Typography variant="h5">
