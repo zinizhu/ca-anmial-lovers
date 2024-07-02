@@ -86,6 +86,10 @@ export const GET_DOG_BY_ID = `
 SELECT * FROM dogs WHERE id=$1;
 `;
 
+export const GET_DOGS_INFO = `
+SELECT * FROM dogs;
+`;
+
 export const DOGS_INFO: Dog[] = [
   {
     name: "Chichi",
@@ -93,13 +97,13 @@ export const DOGS_INFO: Dog[] = [
     month: 0,
     weight: 60,
     deadline: "2024-05-02",
-    breed: "German Shepherd Dog & Husky mix",
+    breed: "German Shepherd & Husky mix",
     gender: "male",
-    medicalCondition: "exist",
-    medicalConditionNote: "Chichi needs medical care.",
+    medical_condition: "exist",
+    medical_condition_note: "Needs medical care.",
     description: "Chichi is adorable!",
-    video_urls: ["../videos/AnimalLovers.mp4"],
     image_urls: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
+    video_urls: ["../videos/AnimalLovers.mp4"],
   },
   {
     name: "Levi",
@@ -107,13 +111,13 @@ export const DOGS_INFO: Dog[] = [
     month: 0,
     weight: 50,
     deadline: "2024-05-02",
-    breed: "German Shepherd Dog",
+    breed: "German Shepherd",
     gender: "male",
-    medicalCondition: "exist",
-    medicalConditionNote: "Levi needs medical care.",
+    medical_condition: "exist",
+    medical_condition_note: "Needs medical care.",
     description: "Levi is smart",
-    video_urls: ["../videos/AnimalLovers.mp4"],
     image_urls: ["../images/Levi.jpeg"],
+    video_urls: ["../videos/AnimalLovers.mp4"],
   },
   {
     name: "Claire",
@@ -121,12 +125,12 @@ export const DOGS_INFO: Dog[] = [
     month: 0,
     weight: 40,
     deadline: "2024-05-03",
-    breed: "German Shepherd Dog",
+    breed: "German Shepherd",
     gender: "female",
-    medicalCondition: "none",
-    medicalConditionNote: "",
+    medical_condition: "none",
+    medical_condition_note: "",
     description: "Claire is cute",
-    video_urls: ["../videos/AnimalLovers.mp4"],
     image_urls: ["../images/Claire.jpeg"],
+    video_urls: ["../videos/AnimalLovers.mp4"],
   },
 ];

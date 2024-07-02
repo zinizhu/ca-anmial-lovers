@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Button from "@mui/material/Button";
@@ -12,7 +13,6 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 
-import { DOGS_INFO } from "./Constants";
 import { Header } from "./Header";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
@@ -20,7 +20,10 @@ import {
   VOLUNTEERS_INFO,
   DOG_VOLUNTEER_MAPPING,
   DOGS_STATUS,
+  Dog,
+  DOG_DEFAULT,
 } from "./Constants";
+import { formatDate, fetchDog } from "./UtilityFunctions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -29,22 +32,25 @@ const Item = styled(Paper)(({ theme }) => ({
   // color: theme.palette.text.secondary,
 }));
 
-export function DogDetailsPage() {
+export const DogDetailsPage = () => {
+  const [dog, setDog] = useState<Dog>(DOG_DEFAULT);
+
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const dogInfo = DOGS_INFO.find((d) => d.id.toString() === id);
 
-  const volunteerId = dogInfo ? DOG_VOLUNTEER_MAPPING[dogInfo.id] : undefined;
+  const volunteerId = dog ? DOG_VOLUNTEER_MAPPING[dog.id] : undefined;
   const volunteerInfo = volunteerId
     ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
     : undefined;
 
-  const dogStatus = dogInfo ? DOGS_STATUS[dogInfo.id] : undefined;
+  const dogStatus = dog ? DOGS_STATUS[dog.id] : undefined;
 
-  const ResourceInfo = {
-    numberOfPeopleInterested: 3,
-  };
+  useEffect(() => {
+    if (id) {
+      fetchDog(id, setDog);
+    }
+  }, []);
 
   return (
     <>
@@ -63,9 +69,9 @@ export function DogDetailsPage() {
 
       <div>
         <Container>
-          {dogInfo ? (
+          {dog && id ? (
             <Container maxWidth="md">
-              <ImagesSlider images={dogInfo.images} />
+              <ImagesSlider images={dog.image_urls} />
               <Container maxWidth="md">
                 <Stack spacing={2}>
                   <Item elevation={0}>
@@ -80,18 +86,18 @@ export function DogDetailsPage() {
                         <Card sx={{ minHeight: 300 }}>
                           <CardContent>
                             <Typography variant="h5" sx={{ mb: 1.5 }}>
-                              Name: {dogInfo.name}
+                              Name: {dog.name}
                             </Typography>
                             <Typography variant="body1">
-                              Breed: {dogInfo.breed}
+                              Breed: {dog.breed}
                               <br />
-                              Age: {dogInfo.age} years old
+                              Age: {dog.year} year {dog.month} month
                               <br />
-                              Weight: {dogInfo.weight} LB
+                              Weight: {dog.weight} LB
                               <br />
-                              Gender: {dogInfo.gender}
+                              Gender: {dog.gender}
                               <br />
-                              Medical Condition: {dogInfo.medicalCondition}
+                              Medical Condition: {dog.medical_condition_note}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -105,7 +111,7 @@ export function DogDetailsPage() {
                               color="red"
                               sx={{ mb: 1.5 }}
                             >
-                              Deadline: {dogInfo.deadline}
+                              Deadline: {formatDate(dog.deadline)}
                             </Typography>
                             {dogStatus ? (
                               <div>
@@ -148,7 +154,7 @@ export function DogDetailsPage() {
                               color="error"
                               size="large"
                               onClick={() =>
-                                navigate(`/sign-up-form/${dogInfo.id}`)
+                                navigate(`/sign-up-form/${dog.id}`)
                               }
                             >
                               Help the Dog!
@@ -167,13 +173,13 @@ export function DogDetailsPage() {
                           Description
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          {dogInfo.description}
+                          {dog.description}
                         </Typography>
                       </CardContent>
                     </Box>
                   </Item>
                   <Item elevation={0}>
-                    <VideosSlider videos={dogInfo.videos} />
+                    <VideosSlider videos={dog.video_urls} />
                   </Item>
                 </Stack>
               </Container>
@@ -187,4 +193,4 @@ export function DogDetailsPage() {
       </div>
     </>
   );
-}
+};

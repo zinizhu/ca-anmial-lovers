@@ -68,8 +68,9 @@ export function VideosSlider({ videos }: Videos) {
         slidesToSlide={1}
         swipeable
       >
-        {videos.map((video) => (
+        {videos.map((video, idx) => (
           <Box
+            key={idx}
             component="ul"
             sx={{ display: "flex", gap: 2, flexWrap: "wrap", p: 0, m: 0 }}
           >

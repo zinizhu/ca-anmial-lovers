@@ -1,58 +1,39 @@
-export type DogInfo = {
+// TODO: Types should be managed centrally.
+type Gender = "male" | "female";
+
+type MedicalCondition = "none" | "exist";
+
+export type Dog = {
   id: number;
   name: string;
-  images: string[];
-  age: number;
+  year: number;
+  month: number;
+  weight: number;
   deadline: string;
   breed: string;
-  gender: string;
-  weight: number;
-  medicalCondition: string;
+  gender: Gender;
+  medical_condition: MedicalCondition;
+  medical_condition_note: string;
   description: string;
-  videos: string[];
+  image_urls: string[];
+  video_urls: string[];
 };
 
-export const DOGS_INFO: DogInfo[] = [
-  {
-    id: 1,
-    name: "Chichi",
-    images: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
-    age: 2,
-    deadline: "05/02",
-    breed: "Huskey",
-    gender: "Male",
-    weight: 60,
-    medicalCondition: "Needs Care",
-    description: "Chichi is adorable!",
-    videos: ["../videos/AnimalLovers.mp4"]
-  },
-  {
-    id: 2,
-    name: "Levi",
-    images: ["../images/Levi.jpeg"],
-    age: 3,
-    deadline: "05/02",
-    breed: "GSD",
-    gender: "Male",
-    weight: 50,
-    medicalCondition: "Needs Care",
-    description: "Levi is smart.",
-    videos: ["../videos/AnimalLovers.mp4"]
-  },
-  {
-    id: 3,
-    name: "Claire",
-    images: ["../images/Claire.jpeg"],
-    age: 7,
-    deadline: "05/03",
-    breed: "GSD",
-    gender: "Female",
-    weight: 40,
-    medicalCondition: "Good",
-    description: "Claire is cute!",
-    videos: ["../videos/AnimalLovers.mp4"]
-  },
-];
+export const DOG_DEFAULT : Dog = {
+    id: 0,
+    name: "unknown",
+    year: 0,
+    month: 0,
+    weight: 0,
+    deadline: "unknown",
+    breed: "unknown",
+    gender: "female",
+    medical_condition: "exist",
+    medical_condition_note: "",
+    description: "",
+    image_urls: [],
+    video_urls: [],
+}
 
 export type VolunteersInfo = {
   id: number;

@@ -15,15 +15,20 @@ import InputLabel from "@mui/material/InputLabel";
 
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-import { DOGS_INFO } from "./Constants";
+import { Dog, DOG_DEFAULT } from "./Constants";
+import { fetchDog } from "./UtilityFunctions";
 import { Header } from "./Header";
 
 export function SignUpForm() {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const dogInfo = DOGS_INFO.find((dog) => dog.id.toString() == id);
+
+  const [dog, setDog] = useState<Dog>(DOG_DEFAULT);
+
+  const dogInfo = dog ? dog : undefined;
 
   const [fosterOrAdopt, setFosterOrAdopt] = React.useState("");
   const handleFosterOrAdoptChange = (event: SelectChangeEvent<string>) => {
@@ -55,6 +60,12 @@ export function SignUpForm() {
     setExperience(event.target.value as string);
   };
 
+  useEffect(() => {
+    if (id) {
+      fetchDog(id, setDog);
+    }
+  }, []);
+
   return (
     <>
       <div>
@@ -71,7 +82,7 @@ export function SignUpForm() {
       </div>
 
       <Container>
-        {dogInfo ? (
+        {dogInfo && id ? (
           <Card>
             <CardContent>
               <Typography variant="h5">
