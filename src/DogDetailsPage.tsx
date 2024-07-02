@@ -11,9 +11,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { Card, CardContent, Container, CardActions } from "@mui/material";
 
 import { Header } from "./Header";
-import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
 import {
@@ -21,8 +21,9 @@ import {
   DOG_VOLUNTEER_MAPPING,
   DOGS_STATUS,
   Dog,
+  DOG_DEFAULT,
 } from "./Constants";
-import { formatDate } from "./UtilityFunctions";
+import { formatDate, fetchDog } from "./UtilityFunctions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -32,32 +33,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const DogDetailsPage = () => {
-  const [dog, setDog] = useState<Dog>({
-    id: 0,
-    name: "unknown",
-    year: 0,
-    month: 0,
-    weight: 0,
-    deadline: "unknown",
-    breed: "unknown",
-    gender: "female",
-    medical_condition: "exist",
-    medical_condition_note: "",
-    description: "",
-    image_urls: [],
-    video_urls: [],
-  });
+  const [dog, setDog] = useState<Dog>(DOG_DEFAULT);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-  // Fetch dog info from backend
-  const fetchDog = async () => {
-    const response = await fetch(`http://localhost:8080/api/dog/info/${id}`);
-    const dogInfoFromBackend = await response.json();
-    setDog(dogInfoFromBackend.dog);
-  };
 
   const volunteerId = dog ? DOG_VOLUNTEER_MAPPING[dog.id] : undefined;
   const volunteerInfo = volunteerId
@@ -66,12 +46,10 @@ export const DogDetailsPage = () => {
 
   const dogStatus = dog ? DOGS_STATUS[dog.id] : undefined;
 
-  const ResourceInfo = {
-    numberOfPeopleInterested: 3,
-  };
-
   useEffect(() => {
-    fetchDog();
+    if (id) {
+      fetchDog(id, setDog);
+    }
   }, []);
 
   return (
@@ -91,7 +69,7 @@ export const DogDetailsPage = () => {
 
       <div>
         <Container>
-          {dog ? (
+          {dog && id ? (
             <Container maxWidth="md">
               <ImagesSlider images={dog.image_urls} />
               <Container maxWidth="md">
@@ -140,7 +118,7 @@ export const DogDetailsPage = () => {
                                 <Typography variant="body1">
                                   Rescue Status: {dogStatus.rescue_status}
                                 </Typography>
-                                <Typography variant="body1">
+                                <Typography variant="body1" sx={{ mb: 1.5 }}>
                                   Adopter/Foster Status:{" "}
                                   {dogStatus.adopter_foster_status}
                                 </Typography>
@@ -175,7 +153,9 @@ export const DogDetailsPage = () => {
                               variant="contained"
                               color="error"
                               size="large"
-                              onClick={() => navigate(`/sign-up-form`)}
+                              onClick={() =>
+                                navigate(`/sign-up-form/${dog.id}`)
+                              }
                             >
                               Help the Dog!
                             </Button>

@@ -19,6 +19,22 @@ export type Dog = {
   video_urls: string[];
 };
 
+export const DOG_DEFAULT : Dog = {
+    id: 0,
+    name: "unknown",
+    year: 0,
+    month: 0,
+    weight: 0,
+    deadline: "unknown",
+    breed: "unknown",
+    gender: "female",
+    medical_condition: "exist",
+    medical_condition_note: "",
+    description: "",
+    image_urls: [],
+    video_urls: [],
+}
+
 export type VolunteersInfo = {
   id: number;
   name: string;

@@ -5,3 +5,10 @@ export function formatDate(dateString: string) {
   const day = String(date.getDate()).padStart(2, "0");
   return `${month}-${day}-${year}`;
 }
+
+// Fetch dog info from backend
+export const fetchDog = async (id: string, setDog: Function) => {
+  const response = await fetch(`http://localhost:8080/api/dog/info/${id}`);
+  const dogInfoFromBackend = await response.json();
+  setDog(dogInfoFromBackend.dog);
+};
