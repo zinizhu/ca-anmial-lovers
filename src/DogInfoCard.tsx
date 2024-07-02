@@ -5,10 +5,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { DogInfo, DOGS_STATUS } from "./Constants";
+import { DOGS_STATUS } from "./Constants";
+import { Dog } from "./Constants";
+import { formatDate } from "./UtilityFunctions";
 
 type DogInfoProps = {
-  dogInfo: DogInfo;
+  dogInfo: Dog;
 };
 
 export function DogInfoCard({ dogInfo }: DogInfoProps) {
@@ -30,36 +32,36 @@ export function DogInfoCard({ dogInfo }: DogInfoProps) {
       <CardMedia
         component="img"
         height="200"
-        image={dogInfo.images[0]}
+        image={dogInfo.image_urls[0]}
         alt={dogInfo.name}
       />
       <CardContent>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             Name: {dogInfo.name}
           </Grid>
-          <Grid item xs={6}>
-            Deadline: {dogInfo.deadline}
+          <Grid item xs={12}>
+            Deadline: {formatDate(dogInfo.deadline)}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             Breed: {dogInfo.breed}
           </Grid>
-          <Grid item xs={6}>
-            Age: {dogInfo.age} years old
+          <Grid item xs={12}>
+            Age: {dogInfo.year} years {dogInfo.month} month
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             Weight: {dogInfo.weight} LB
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             Gender: {dogInfo.gender}
           </Grid>
           <Grid item xs={12}>
-            Medical Condition: {dogInfo.medicalCondition}
+            Medical Condition: {dogInfo.medical_condition}
           </Grid>
         </Grid>
       </CardContent>
 
-      <CardActions>
+      <CardActions style={{ justifyContent: "flex-end" }}>
         <Button
           variant="contained"
           color="info"

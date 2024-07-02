@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Button from "@mui/material/Button";
@@ -11,7 +12,6 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
-import { DOGS_INFO } from "./Constants";
 import { Header } from "./Header";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 import { ImagesSlider } from "./ImagesSlider";
@@ -20,30 +20,9 @@ import {
   VOLUNTEERS_INFO,
   DOG_VOLUNTEER_MAPPING,
   DOGS_STATUS,
+  Dog,
 } from "./Constants";
-import { useState, useEffect } from "react";
-
-// TODO: Types should be managed centrally.
-type Gender = "male" | "female";
-
-type MedicalCondition = "none" | "exist";
-
-type Dog = {
-  id: number;
-  name: string;
-  year: number;
-  month: number;
-  weight: number;
-  deadline: string;
-  breed: string;
-  gender: Gender;
-  medical_condition: MedicalCondition;
-  medical_condition_note: string;
-  description: string;
-  image_urls: string[];
-  video_urls: string[];
-};
-
+import { formatDate } from "./UtilityFunctions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -55,18 +34,18 @@ const Item = styled(Paper)(({ theme }) => ({
 export const DogDetailsPage = () => {
   const [dog, setDog] = useState<Dog>({
     id: 0,
-    name: 'unknown',
+    name: "unknown",
     year: 0,
     month: 0,
     weight: 0,
-    deadline: 'unknown',
-    breed: 'unknown',
-    gender: 'female',
-    medical_condition: 'exist',
-    medical_condition_note: '',
-    description: '',
+    deadline: "unknown",
+    breed: "unknown",
+    gender: "female",
+    medical_condition: "exist",
+    medical_condition_note: "",
+    description: "",
     image_urls: [],
-    video_urls: []
+    video_urls: [],
   });
 
   const navigate = useNavigate();
@@ -77,9 +56,9 @@ export const DogDetailsPage = () => {
   const fetchDog = async () => {
     const response = await fetch(`http://localhost:8080/api/dog/info/${id}`);
     const dogInfoFromBackend = await response.json();
-    setDog(dogInfoFromBackend.dog)
-  }
-  
+    setDog(dogInfoFromBackend.dog);
+  };
+
   const volunteerId = dog ? DOG_VOLUNTEER_MAPPING[dog.id] : undefined;
   const volunteerInfo = volunteerId
     ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
@@ -92,7 +71,7 @@ export const DogDetailsPage = () => {
   };
 
   useEffect(() => {
-    fetchDog()
+    fetchDog();
   }, []);
 
   return (
@@ -126,7 +105,7 @@ export const DogDetailsPage = () => {
                       style={{ background: "#fef2e0" }}
                     >
                       <Grid item xs={12} sm={6}>
-                        <Card sx={{ minHeight: 250 }}>
+                        <Card sx={{ minHeight: 300 }}>
                           <CardContent>
                             <Typography variant="h5" sx={{ mb: 1.5 }}>
                               Name: {dog.name}
@@ -147,14 +126,14 @@ export const DogDetailsPage = () => {
                       </Grid>
 
                       <Grid item xs={12} sm={6}>
-                        <Card sx={{ minHeight: 250 }}>
+                        <Card sx={{ minHeight: 300 }}>
                           <CardContent>
                             <Typography
                               variant="h5"
                               color="red"
                               sx={{ mb: 1.5 }}
                             >
-                              Deadline: {dog.deadline}
+                              Deadline: {formatDate(dog.deadline)}
                             </Typography>
                             {dogStatus ? (
                               <div>
@@ -234,4 +213,4 @@ export const DogDetailsPage = () => {
       </div>
     </>
   );
-}
+};
