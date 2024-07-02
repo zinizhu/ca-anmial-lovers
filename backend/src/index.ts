@@ -3,7 +3,7 @@ import cors from "cors";
 import pg from "pg";
 
 import { DOGS, DOGS_STATUS } from "./mock-data/dogs";
-import { DB_CONFIG } from "./db/constants";
+import { DB_CONFIG, GET_DOGS_INFO } from "./db/constants";
 import { getDogById } from "./db/db";
 
 const { Pool } = pg;
@@ -19,7 +19,15 @@ app.get("/api", async (req, res) => {
 });
 
 app.get("/api/dogs/info", async (req, res) => {
-  res.json({ dogs: DOGS });
+  const client = await pool.connect();
+  try {
+    const response = await client.query(GET_DOGS_INFO);
+    res.json({dogs: response.rows})
+  } catch (error) {
+    res.status(500).send({ error: error });
+  } finally {
+    client.release();
+  }
 });
 
 app.get("/api/dogs/status", async (req, res) => {

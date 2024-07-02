@@ -86,6 +86,10 @@ export const GET_DOG_BY_ID = `
 SELECT * FROM dogs WHERE id=$1;
 `;
 
+export const GET_DOGS_INFO = `
+SELECT * FROM dogs;
+`;
+
 export const DOGS_INFO: Dog[] = [
   {
     name: "Chichi",
