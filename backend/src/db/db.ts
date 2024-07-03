@@ -15,7 +15,7 @@ export const getDogById = async (
     }
   } catch (error) {
     err = error;
-    console.log("Detect error during getDogByID: ", error);
+    console.log("[getDogByID] error: ", error);
   } finally {
     client.release();
     return {
@@ -38,7 +38,7 @@ export const getDogStatusById = async (
     }
   } catch (error) {
     err = error;
-    console.log("Detect error during getDogStatusById: ", error);
+    console.log("[getDogStatusById] error: ", error);
   } finally {
     client.release();
     return {

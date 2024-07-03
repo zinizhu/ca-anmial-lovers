@@ -12,7 +12,11 @@ import {
   DROP_TABLE_DOGS_STATUS,
   INSERT_DOG_STATUS,
   DOGS_STATUS,
-  CREATE_TABLE_DOGS_STATUS
+  CREATE_TABLE_DOGS_STATUS,
+  DELETE_ENUM_RESCUE_STATUS,
+  DELETE_ENUM_ADOPTER_FOSTER_STATUS,
+  CREATE_ENUM_RESCUE_STATUS,
+  CREATE_ENUM_ADOPTER_FOSTER_STATUS
 } from "./constants";
 
 // Rename to populateLocalDB.ts
@@ -102,6 +106,8 @@ const dropsDogsStatusTable = async (client: pg.PoolClient) => {
   try {
     await client.query("BEGIN");
     await client.query(DROP_TABLE_DOGS_STATUS);
+    await client.query(DELETE_ENUM_RESCUE_STATUS);
+    await client.query(DELETE_ENUM_ADOPTER_FOSTER_STATUS);
     await client.query("COMMIT");
     console.log("Dogs status table successfully deleted.");
     return 0;
@@ -145,6 +151,8 @@ const createAndPopulateDogsStatusTable = async () => {
 const createDogsStatusTable = async (client: pg.PoolClient) => {
   try {
     await client.query("BEGIN");
+    await client.query(CREATE_ENUM_RESCUE_STATUS);
+    await client.query(CREATE_ENUM_ADOPTER_FOSTER_STATUS);
     await client.query(CREATE_TABLE_DOGS_STATUS);
     await client.query("COMMIT");
     console.log("Dogs table successfully created.");
@@ -180,7 +188,7 @@ const { Pool } = pg;
 const pool = new Pool(DB_CONFIG);
 
 let res = 0;
-if (process.env.DELETE_EXISTING_TABLE_DOGS === "true") {
+if (process.env.DELETE_EXISTING_TABLE === "true") {
   res = await dropExistingDogsTable();
 }
 
@@ -189,7 +197,7 @@ if (res === 0) {
 }
 
 res = 0;
-if (process.env.DELETE_EXISTING_TABLE_DOGS === "true") {
+if (process.env.DELETE_EXISTING_TABLE === "true") {
   res = await dropExistingDogsStatusTable();
 }
 

@@ -83,12 +83,36 @@ INSERT INTO dogs(
 );
 `;
 
+export const CREATE_ENUM_RESCUE_STATUS = `
+CREATE TYPE RESCUE_STATUS AS ENUM (
+    'in need',
+    'in contact',
+    'tagged'
+);
+`;
+
+export const CREATE_ENUM_ADOPTER_FOSTER_STATUS = `
+CREATE TYPE ADOPTER_FOSTER_STATUS AS ENUM (
+    'in need',
+    'in contact',
+    'commited'
+);
+`;
+
+export const DELETE_ENUM_RESCUE_STATUS = `
+DROP TYPE IF EXISTS RESCUE_STATUS
+`;
+
+export const DELETE_ENUM_ADOPTER_FOSTER_STATUS = `
+DROP TYPE IF EXISTS ADOPTER_FOSTER_STATUS
+`;
+
 export const CREATE_TABLE_DOGS_STATUS = `
 CREATE TABLE IF NOT EXISTS dogs_status (
     id SERIAL PRIMARY KEY,
-    dog_id INT DEFAULT 0,
-    rescue_status TEXT,
-    adopter_foster_status TEXT,
+    dog_id INT,
+    rescue_status RESCUE_STATUS NOT NULL,
+    adopter_foster_status ADOPTER_FOSTER_STATUS NOT NULL,
     number_of_interested INT DEFAULT 0
 );
 `;
@@ -175,20 +199,20 @@ export const DOGS_INFO: Dog[] = [
 export const DOGS_STATUS: DogStatus[] = [
   {
     dog_id: 1,
-    rescue_status: "In Contact",
-    adopter_foster_status: "In Need",
+    rescue_status: "in contact",
+    adopter_foster_status: "in need",
     number_of_interested: 0
   },
   {
     dog_id: 2,
-    rescue_status: "Tagged",
-    adopter_foster_status: "In Contact",
+    rescue_status: "tagged",
+    adopter_foster_status: "in contact",
     number_of_interested: 1
   },
   {
     dog_id: 3,
-    rescue_status: "Tagged",
-    adopter_foster_status: "Commited",
+    rescue_status: "tagged",
+    adopter_foster_status: "commited",
     number_of_interested: 2
   }
 ];

@@ -22,10 +22,13 @@ export type DogResponse = {
   err: any;
 };
 
+export type RescueStatus = "in need" | "in contact" | "tagged";
+export type AdopterFosterStatus = "in need" | "in contact" | "commited";
+
 export type DogStatus = {
   dog_id: number;
-  rescue_status: string;
-  adopter_foster_status: string;
+  rescue_status: RescueStatus;
+  adopter_foster_status: AdopterFosterStatus;
   number_of_interested: number;
 }
 
