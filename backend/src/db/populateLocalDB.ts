@@ -5,13 +5,11 @@ import {
   CREATE_ENUM_MEDICAL_CONDITION,
   CREATE_TABLE_DOGS,
   DROP_TABLE_DOGS,
-  GET_DOG_BY_ID,
   DELETE_ENUM_GENDER,
   DELETE_ENUM_MEDICAL_CONDITION,
   INSERT_DOG,
   DOGS_INFO,
 } from "./constants";
-import { Dog, DogResponse } from "./types";
 
 // Rename to populateLocalDB.ts
 const createDogsTable = async (client: pg.PoolClient) => {
