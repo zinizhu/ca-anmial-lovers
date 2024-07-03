@@ -5,7 +5,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid"; // Grid version 1
 
-import { Header } from "./Header";
+import { Header } from "../Header";
 
 export function CompleteSignUp() {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export function CompleteSignUp() {
               <CardMedia
                 component="img"
                 height={600}
-                image="../images/dog_loves_you.jpg"
+                image="../images/dogLovesYou.jpg"
               />
               <CardContent>
                 <Typography variant="h3" align="center">

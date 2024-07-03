@@ -13,7 +13,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { Card, CardContent, Container, CardActions } from "@mui/material";
 
-import { Header } from "./Header";
+import { Header } from "../Header";
 import { ImagesSlider } from "./ImagesSlider";
 import { VideosSlider } from "./VideosSlider";
 import {
@@ -22,8 +22,8 @@ import {
   DOGS_STATUS,
   Dog,
   DOG_DEFAULT,
-} from "./Constants";
-import { formatDate, fetchDog } from "./UtilityFunctions";
+} from "../HomePage/constants";
+import { formatDate, fetchDog } from "../helper_functions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

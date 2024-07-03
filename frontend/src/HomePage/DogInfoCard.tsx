@@ -5,9 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { DOGS_STATUS } from "./Constants";
-import { Dog } from "./Constants";
-import { formatDate } from "./UtilityFunctions";
+import { DOGS_STATUS, Dog } from "./constants";
+import { formatDate } from "../helper_functions";
 
 type DogInfoProps = {
   dogInfo: Dog;

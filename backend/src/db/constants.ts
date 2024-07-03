@@ -102,8 +102,8 @@ export const DOGS_INFO: Dog[] = [
     medical_condition: "exist",
     medical_condition_note: "Needs medical care.",
     description: "Chichi is adorable!",
-    image_urls: ["../images/Chichi.jpeg", "../images/Chichi_2.jpeg"],
-    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/chichi1.jpeg", "../images/chichi2.jpeg"],
+    video_urls: ["../videos/animalLovers.mp4"],
   },
   {
     name: "Levi",
@@ -116,8 +116,8 @@ export const DOGS_INFO: Dog[] = [
     medical_condition: "exist",
     medical_condition_note: "Needs medical care.",
     description: "Levi is smart",
-    image_urls: ["../images/Levi.jpeg"],
-    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/levi.jpeg"],
+    video_urls: ["../videos/animalLovers.mp4"],
   },
   {
     name: "Claire",
@@ -130,7 +130,7 @@ export const DOGS_INFO: Dog[] = [
     medical_condition: "none",
     medical_condition_note: "",
     description: "Claire is cute",
-    image_urls: ["../images/Claire.jpeg"],
-    video_urls: ["../videos/AnimalLovers.mp4"],
+    image_urls: ["../images/claire.jpeg"],
+    video_urls: ["../videos/animalLovers.mp4"],
   },
 ];

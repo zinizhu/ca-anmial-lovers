@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"; // Grid version 1
-import { Card, CardContent, Stack } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -17,9 +17,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { Dog, DOG_DEFAULT } from "./Constants";
-import { fetchDog } from "./UtilityFunctions";
-import { Header } from "./Header";
+import { Dog, DOG_DEFAULT } from "../HomePage/constants";
+import { fetchDog } from "../helper_functions";
+import { Header } from "../Header";
 
 export function SignUpForm() {
   const navigate = useNavigate();
