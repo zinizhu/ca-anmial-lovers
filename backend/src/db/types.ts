@@ -21,3 +21,15 @@ export type DogResponse = {
   dog: Dog | null;
   err: any;
 };
+
+export type DogStatus = {
+  dog_id: number;
+  rescue_status: string;
+  adopter_foster_status: string;
+  number_of_interested: number;
+}
+
+export type DogStatusResponse = {
+  dog_status: DogStatus | null;
+  err: any;
+};

@@ -1,4 +1,4 @@
-import { Dog } from "./types";
+import { Dog, DogStatus } from "./types";
 
 export const DB_CONFIG = {
   user: "caal",
@@ -82,12 +82,49 @@ INSERT INTO dogs(
     $12
 );
 `;
+
+export const CREATE_TABLE_DOGS_STATUS = `
+CREATE TABLE IF NOT EXISTS dogs_status (
+    id SERIAL PRIMARY KEY,
+    dog_id INT DEFAULT 0,
+    rescue_status TEXT,
+    adopter_foster_status TEXT,
+    number_of_interested INT DEFAULT 0
+);
+`;
+
+export const DROP_TABLE_DOGS_STATUS = `
+    DROP TABLE IF EXISTS dogs_status
+`;
+
+export const INSERT_DOG_STATUS = `
+INSERT INTO dogs_status(
+    dog_id,
+    rescue_status,
+    adopter_foster_status,
+    number_of_interested
+) VALUES(
+    $1,
+    $2,
+    $3,
+    $4
+);
+`;
+
 export const GET_DOG_BY_ID = `
 SELECT * FROM dogs WHERE id=$1;
 `;
 
 export const GET_DOGS_INFO = `
 SELECT * FROM dogs;
+`;
+
+export const GET_DOG_STATUS_BY_ID = `
+SELECT * FROM dogs_status WHERE dog_id=$1;
+`;
+
+export const GET_DOGS_STATUS = `
+SELECT * FROM dogs_status;
 `;
 
 export const DOGS_INFO: Dog[] = [
@@ -133,4 +170,25 @@ export const DOGS_INFO: Dog[] = [
     image_urls: ["../images/Claire.jpeg"],
     video_urls: ["../videos/AnimalLovers.mp4"],
   },
+];
+
+export const DOGS_STATUS: DogStatus[] = [
+  {
+    dog_id: 1,
+    rescue_status: "In Contact",
+    adopter_foster_status: "In Need",
+    number_of_interested: 0
+  },
+  {
+    dog_id: 2,
+    rescue_status: "Tagged",
+    adopter_foster_status: "In Contact",
+    number_of_interested: 1
+  },
+  {
+    dog_id: 3,
+    rescue_status: "Tagged",
+    adopter_foster_status: "Commited",
+    number_of_interested: 2
+  }
 ];
