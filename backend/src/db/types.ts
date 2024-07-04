@@ -22,8 +22,8 @@ export type DogResponse = {
   err: any;
 };
 
-export type RescueStatus = "in need" | "in contact" | "tagged";
-export type AdopterFosterStatus = "in need" | "in contact" | "commited";
+export type RescueStatus = "in_need" | "in_contact" | "tagged";
+export type AdopterFosterStatus = "in_need" | "in_contact" | "committed";
 
 export type DogStatus = {
   dog_id: number;

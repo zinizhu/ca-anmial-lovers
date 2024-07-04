@@ -85,17 +85,17 @@ INSERT INTO dogs(
 
 export const CREATE_ENUM_RESCUE_STATUS = `
 CREATE TYPE RESCUE_STATUS AS ENUM (
-    'in need',
-    'in contact',
+    'in_need',
+    'in_contact',
     'tagged'
 );
 `;
 
 export const CREATE_ENUM_ADOPTER_FOSTER_STATUS = `
 CREATE TYPE ADOPTER_FOSTER_STATUS AS ENUM (
-    'in need',
-    'in contact',
-    'commited'
+    'in_need',
+    'in_contact',
+    'committed'
 );
 `;
 
@@ -199,20 +199,20 @@ export const DOGS_INFO: Dog[] = [
 export const DOGS_STATUS: DogStatus[] = [
   {
     dog_id: 1,
-    rescue_status: "in contact",
-    adopter_foster_status: "in need",
+    rescue_status: "in_contact",
+    adopter_foster_status: "in_need",
     number_of_interested: 0
   },
   {
     dog_id: 2,
     rescue_status: "tagged",
-    adopter_foster_status: "in contact",
+    adopter_foster_status: "in_contact",
     number_of_interested: 1
   },
   {
     dog_id: 3,
     rescue_status: "tagged",
-    adopter_foster_status: "commited",
+    adopter_foster_status: "committed",
     number_of_interested: 2
   }
 ];
