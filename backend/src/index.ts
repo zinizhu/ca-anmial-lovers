@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import pg from "pg";
 
-import { DOGS, DOGS_STATUS } from "./mock-data/dogs";
-import { DB_CONFIG, GET_DOGS_INFO } from "./db/constants";
-import { getDogById } from "./db/db";
+import { DOGS_STATUS } from "./mock-data/dogs";
+import { DB_CONFIG, GET_DOGS_INFO , GET_DOGS_STATUS} from "./db/constants";
+import { getDogById, getDogStatusById } from "./db/db";
 
 const { Pool } = pg;
 const pool = new Pool(DB_CONFIG);
@@ -31,7 +31,15 @@ app.get("/api/dogs/info", async (req, res) => {
 });
 
 app.get("/api/dogs/status", async (req, res) => {
-  res.json({ status: DOGS_STATUS });
+  const client = await pool.connect();
+  try {
+    const response = await client.query(GET_DOGS_STATUS);
+    res.json({dogs_status: response.rows})
+  } catch (error) {
+    res.status(500).send({ error: error });
+  } finally {
+    client.release();
+  }
 });
 
 app.get("/api/dog/info/:id", async (req, res) => {
@@ -46,11 +54,12 @@ app.get("/api/dog/info/:id", async (req, res) => {
 
 app.get("/api/dog/status/:id", async (req, res) => {
   const dogId = parseInt(req.params.id, 10);
-  const filteredDogs = DOGS_STATUS.filter((d) => d.id === dogId);
-  if (filteredDogs.length !== 1) {
-    res.status(500).send({ error: "More than one dog have the requested ID." });
+  const client = await pool.connect();
+  const response = await getDogStatusById(dogId, client);
+  if (response.err) {
+    res.status(500).send({ error: response.err });
   }
-  res.json({ message: filteredDogs[0] });
+  res.json({ dog_status: response.dog_status });
 });
 
 app.get("*", function (req, res) {

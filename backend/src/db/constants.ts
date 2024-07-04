@@ -1,4 +1,4 @@
-import { Dog } from "./types";
+import { Dog, DogStatus } from "./types";
 
 export const DB_CONFIG = {
   user: "caal",
@@ -82,12 +82,73 @@ INSERT INTO dogs(
     $12
 );
 `;
+
+export const CREATE_ENUM_RESCUE_STATUS = `
+CREATE TYPE RESCUE_STATUS AS ENUM (
+    'in_need',
+    'in_contact',
+    'tagged'
+);
+`;
+
+export const CREATE_ENUM_ADOPTER_FOSTER_STATUS = `
+CREATE TYPE ADOPTER_FOSTER_STATUS AS ENUM (
+    'in_need',
+    'in_contact',
+    'committed'
+);
+`;
+
+export const DELETE_ENUM_RESCUE_STATUS = `
+DROP TYPE IF EXISTS RESCUE_STATUS
+`;
+
+export const DELETE_ENUM_ADOPTER_FOSTER_STATUS = `
+DROP TYPE IF EXISTS ADOPTER_FOSTER_STATUS
+`;
+
+export const CREATE_TABLE_DOGS_STATUS = `
+CREATE TABLE IF NOT EXISTS dogs_status (
+    id SERIAL PRIMARY KEY,
+    dog_id INT,
+    rescue_status RESCUE_STATUS NOT NULL,
+    adopter_foster_status ADOPTER_FOSTER_STATUS NOT NULL,
+    number_of_interested INT DEFAULT 0
+);
+`;
+
+export const DROP_TABLE_DOGS_STATUS = `
+    DROP TABLE IF EXISTS dogs_status
+`;
+
+export const INSERT_DOG_STATUS = `
+INSERT INTO dogs_status(
+    dog_id,
+    rescue_status,
+    adopter_foster_status,
+    number_of_interested
+) VALUES(
+    $1,
+    $2,
+    $3,
+    $4
+);
+`;
+
 export const GET_DOG_BY_ID = `
 SELECT * FROM dogs WHERE id=$1;
 `;
 
 export const GET_DOGS_INFO = `
 SELECT * FROM dogs;
+`;
+
+export const GET_DOG_STATUS_BY_ID = `
+SELECT * FROM dogs_status WHERE dog_id=$1;
+`;
+
+export const GET_DOGS_STATUS = `
+SELECT * FROM dogs_status;
 `;
 
 export const DOGS_INFO: Dog[] = [
@@ -133,4 +194,25 @@ export const DOGS_INFO: Dog[] = [
     image_urls: ["../images/Claire.jpeg"],
     video_urls: ["../videos/AnimalLovers.mp4"],
   },
+];
+
+export const DOGS_STATUS: DogStatus[] = [
+  {
+    dog_id: 1,
+    rescue_status: "in_contact",
+    adopter_foster_status: "in_need",
+    number_of_interested: 0
+  },
+  {
+    dog_id: 2,
+    rescue_status: "tagged",
+    adopter_foster_status: "in_contact",
+    number_of_interested: 1
+  },
+  {
+    dog_id: 3,
+    rescue_status: "tagged",
+    adopter_foster_status: "committed",
+    number_of_interested: 2
+  }
 ];

@@ -51,7 +51,7 @@ $ sudo npm install tsx -g
 Create the `dogs` table on in your local Postgres DB and populate the table with mock data:
 
 ```sh
-$ DELETE_EXISTING_TABLE_DOGS=true tsx backend/src/db/populateLocalDB.ts
+$ DELETE_EXISTING_TABLE=true tsx backend/src/db/populateLocalDB.ts
 ```
 
 ## Start backend server
