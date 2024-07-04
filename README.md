@@ -23,3 +23,21 @@
    ```
 
 4. Visit `localhost:5173`.
+
+## VSCode Formatter
+
+1. Install the `Prettier - Code formatter` Extension.
+
+2. Add this snippet to the `settings.json` file:
+
+```json
+{
+  // ... other settings
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
