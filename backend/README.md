@@ -56,8 +56,8 @@ $ DELETE_EXISTING_TABLE=true tsx backend/src/db/populateLocalDB.ts
 
 ## Start backend server
 
-To start the backend server, make sure you are in the backend directory. Run
+To start the backend server, from the directory root run
 
 ```sh
-$ tsx src/index.ts
+$ npm run start:backend
 ```

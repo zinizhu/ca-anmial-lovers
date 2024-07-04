@@ -1,13 +1,11 @@
-import * as React from "react";
-
 import Grid from "@mui/material/Grid"; // Grid version 1
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import { DogInfoCard } from "./DogInfoCard";
-import { Dog } from "./Constants";
-import { Header } from "./Header";
+import { Dog } from "./constants";
+import { Header } from "../Header";
 
 document.body.style.backgroundColor = "#fef2e0";
 
