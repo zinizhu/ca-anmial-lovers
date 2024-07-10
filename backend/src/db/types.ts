@@ -30,7 +30,7 @@ export type DogStatus = {
   rescue_status: RescueStatus;
   adopter_foster_status: AdopterFosterStatus;
   number_of_interested: number;
-}
+};
 
 export type DogStatusResponse = {
   dog_status: DogStatus | null;

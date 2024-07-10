@@ -19,11 +19,12 @@ import { VideosSlider } from "./VideosSlider";
 import {
   VOLUNTEERS_INFO,
   DOG_VOLUNTEER_MAPPING,
-  DOGS_STATUS,
   Dog,
   DOG_DEFAULT,
+  DogStatus,
+  DOG_STATUS_DEFAULT,
 } from "../HomePage/constants";
-import { formatDate, fetchDog } from "../helper_functions";
+import { formatDate, fetchDog, fetchDogStatus } from "../helper_functions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -34,6 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const DogDetailsPage = () => {
   const [dog, setDog] = useState<Dog>(DOG_DEFAULT);
+  const [dogStatus, setDogStatus] = useState<DogStatus>(DOG_STATUS_DEFAULT);
 
   const navigate = useNavigate();
 
@@ -44,11 +46,10 @@ export const DogDetailsPage = () => {
     ? VOLUNTEERS_INFO.find((volunteer) => volunteer.id === volunteerId)
     : undefined;
 
-  const dogStatus = dog ? DOGS_STATUS[dog.id] : undefined;
-
   useEffect(() => {
     if (id) {
       fetchDog(id, setDog);
+      fetchDogStatus(id, setDogStatus);
     }
   }, []);
 
@@ -69,7 +70,7 @@ export const DogDetailsPage = () => {
 
       <div>
         <Container>
-          {dog && id ? (
+          {dog && dogStatus && id ? (
             <Container maxWidth="md">
               <ImagesSlider images={dog.image_urls} />
               <Container maxWidth="md">

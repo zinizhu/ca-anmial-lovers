@@ -19,38 +19,38 @@ export type Dog = {
   video_urls: string[];
 };
 
-export const DOG_DEFAULT : Dog = {
-    id: 0,
-    name: "unknown",
-    year: 0,
-    month: 0,
-    weight: 0,
-    deadline: "unknown",
-    breed: "unknown",
-    gender: "female",
-    medical_condition: "exist",
-    medical_condition_note: "",
-    description: "",
-    image_urls: [],
-    video_urls: [],
-}
+export const DOG_DEFAULT: Dog = {
+  id: 0,
+  name: "unknown",
+  year: 0,
+  month: 0,
+  weight: 0,
+  deadline: "unknown",
+  breed: "unknown",
+  gender: "female",
+  medical_condition: "exist",
+  medical_condition_note: "",
+  description: "",
+  image_urls: [],
+  video_urls: [],
+};
 
 export type VolunteersInfo = {
   id: number;
   name: string;
   phone_number: string;
 };
-  
+
 export const VOLUNTEERS_INFO: VolunteersInfo[] = [
   {
-      id: 1,
-      name: "A",
-      phone_number: "12345",
+    id: 1,
+    name: "A",
+    phone_number: "12345",
   },
   {
-      id: 2,
-      name: "B",
-      phone_number: "98765",
+    id: 2,
+    name: "B",
+    phone_number: "98765",
   },
 ];
 
@@ -59,29 +59,19 @@ export const DOG_VOLUNTEER_MAPPING: Record<number, number> = {
   2: 2,
 };
 
-export type DOGSTATUS = {
-  rescue_status: string;
-  adopter_foster_status: string;
-  number_of_interested: number;
-}
+type RescueStatus = "in_need" | "in_contact" | "tagged";
+type AdopterFosterStatus = "in_need" | "in_contact" | "committed";
 
-export const DOGS_STATUS: Record<number, DOGSTATUS> = {
-  1: 
-  { 
-    rescue_status: "In Contact",
-    adopter_foster_status: "In Need",
-    number_of_interested: 0
-  },
-  2:
-  {
-    rescue_status: "Tagged",
-    adopter_foster_status: "In Contact",
-    number_of_interested: 1
-  },
-  3:
-  {
-    rescue_status: "Tagged",
-    adopter_foster_status: "Commited",
-    number_of_interested: 2
-  }
+export type DogStatus = {
+  dog_id: number;
+  rescue_status: RescueStatus;
+  adopter_foster_status: AdopterFosterStatus;
+  number_of_interested: number;
+};
+
+export const DOG_STATUS_DEFAULT: DogStatus = {
+  dog_id: 0,
+  rescue_status: "in_need",
+  adopter_foster_status: "in_need",
+  number_of_interested: 0,
 };
