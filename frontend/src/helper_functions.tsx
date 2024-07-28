@@ -12,3 +12,10 @@ export const fetchDog = async (id: string, setDog: Function) => {
   const dogInfoFromBackend = await response.json();
   setDog(dogInfoFromBackend.dog);
 };
+
+// Fetch dog status from backend
+export const fetchDogStatus = async (id: string, setDogStatus: Function) => {
+  const response = await fetch(`http://localhost:8080/api/dog/status/${id}`);
+  const dogStatusFromBackend = await response.json();
+  setDogStatus(dogStatusFromBackend.dog_status);
+};

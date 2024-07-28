@@ -5,7 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { DOGS_STATUS, Dog } from "./constants";
+import { useState, useEffect } from "react";
+
+import { Dog, DogStatus } from "./constants";
 import { formatDate } from "../helper_functions";
 
 type DogInfoProps = {
@@ -15,7 +17,21 @@ type DogInfoProps = {
 export function DogInfoCard({ dogInfo }: DogInfoProps) {
   const navigate = useNavigate();
 
-  const dogStatus = DOGS_STATUS[dogInfo.id];
+  const [dogsStatus, setDogsStatus] = useState<DogStatus[]>();
+
+  const fetchDogsStatus = async () => {
+    const response = await fetch("http://localhost:8080/api/dogs/status");
+    const dogsStatusFromBackend = await response.json();
+    setDogsStatus(dogsStatusFromBackend.dogs_status);
+  };
+
+  useEffect(() => {
+    fetchDogsStatus();
+  }, []);
+
+  const dogStatus = dogsStatus
+    ? dogsStatus.find((dogStatus) => dogStatus.dog_id === dogInfo.id)
+    : undefined;
 
   return (
     <Card sx={{ maxWidth: 345 }} variant="outlined">
